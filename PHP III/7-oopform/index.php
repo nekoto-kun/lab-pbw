@@ -1,6 +1,6 @@
 <?php
 require_once('data.php');
-require_once('product.php');
+require_once('models/product.php');
 ?>
 
 <!DOCTYPE html>

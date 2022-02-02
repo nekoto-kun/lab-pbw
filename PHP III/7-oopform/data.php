@@ -1,5 +1,5 @@
 <?php
-require_once('product.php');
+require_once('models/product.php');
 
 $cpu = new Product('Intel', 9600000, 'https://c1.neweggimages.com/ProductImageCompressAll1280/19-118-341-06.jpg');
 $ssd = new Product('Samsung', 5200000, 'https://pemmz.com/pub/media/catalog/product/cache/bd3f5a515fc184d023496aa6e56fb6f6/_/_/__57_2.jpg');
