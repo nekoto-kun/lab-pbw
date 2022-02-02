@@ -51,7 +51,7 @@ class Product
     return $this->getPriceVAT() * $this->orderCount;
   }
 
-  public function getCount()
+  public static function getCount()
   {
     return self::$count;
   }

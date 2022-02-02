@@ -1,4 +1,7 @@
-<?php require_once('data.php'); ?>
+<?php
+require_once('data.php');
+require_once('product.php');
+?>
 
 <!DOCTYPE html>
 <html>
@@ -25,6 +28,8 @@
 <body>
   <div class="container mt-5">
     <h1>BT Peripherals</h1>
+
+    <h3>Item count: <?= Product::getCount() ?></h3>
 
     <form action="confirm.php" method="post">
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 mt-5">
