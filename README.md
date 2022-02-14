@@ -10,5 +10,5 @@ This repository contains all lab materials and examples for PBW lecture as liste
 | --------------------- | -------------- | ------ |
 | Lab 1: basic-html     | HTML + CSS I   | ✔      |
 | Lab 2: admin-html     | HTML + CSS II  | ✔      |
-| Lab 3: portfolio-html | HTML + CSS III | 💬      |
+| Lab 3: portfolio-html | HTML + CSS III | ✔      |
 | Lab 4: regform-html   | HTML + CSS IV  | 💬      |
