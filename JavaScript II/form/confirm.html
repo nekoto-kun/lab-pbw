@@ -50,6 +50,7 @@
                         </tr>
                         <tr>
                           <td>
+                            <!-- Trik untuk menyisipkan output menggunakan atribut ID dan elemen span -->
                             <span id="fullName"></span> (<span id="email"></span>)<br>
                             <span id="age"></span><br>
                             <span id="address"></span><br>
@@ -96,10 +97,12 @@
     crossorigin="anonymous"></script>
 
   <script>
+    // Trik untuk mendapaatkan value dari form
     const params = new Proxy(new URLSearchParams(window.location.search), {
       get: (searchParams, prop) => searchParams.get(prop),
     });
 
+    // Cara untuk menyisipkan value ke dalam elemen HTML
     document.getElementById('fullName').innerHTML = params.fullName ?? '-';
     document.getElementById('email').innerHTML = params.email ?? '-';
     document.getElementById('address').innerHTML = params.address ?? '-';
@@ -107,13 +110,14 @@
     document.getElementById('state').innerHTML = params.state ?? '-';
     document.getElementById('zip').innerHTML = params.zip ?? '-';
 
-    const dobArr = params.dob.split('-');
-    const dob = new Date(dobArr[0], dobArr[1], dobArr[2]);
-    const getAge = birthDate => Math.floor((Date.now() - new Date(birthDate).getTime()) / 3.15576e+10);
+    // Manipulasi data
+    const dobArr = params.dob.split('-'); // Data dari input tanggal berupa teks dengan format 'YYYY-MM-DD'
+    const dob = new Date(dobArr[0], dobArr[1], dobArr[2]); // Date(year, month, date)
+    const getAge = birthDate => Math.floor((Date.now() - new Date(birthDate).getTime()) / 3.15576e+10); // Trik untuk mendapatkan umur berdasarkan tanggal di masa lalu
 
     document.getElementById('age').innerHTML = `${getAge(dob)} tahun`;
 
-    const chosenNumber = params.chosenNumber * (params.enableMultiply === 'on' ? 100 : 1);
+    const chosenNumber = params.chosenNumber * (params.enableMultiply === 'on' ? 100 : 1); // Data dari input checkbox berupa teks 'on' jika checkbox dicentang
     document.getElementById('number').innerHTML = chosenNumber;
     document.getElementById('multiply-enabled').innerHTML = params.enableMultiply === 'on' ? '🟢' : '❌';
   </script>

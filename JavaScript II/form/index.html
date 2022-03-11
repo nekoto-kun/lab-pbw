@@ -136,13 +136,16 @@
     integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
     crossorigin="anonymous"></script>
 
+  <!-- Cara mengimpor JS dari file -->
   <script src="form-validation.js"></script>
 
   <script>
+    // Deklarasi function untuk trigger Country.
     function getStates() {
       let country = document.getElementById('country').value;
       let items = [];
 
+      // Secara dinamis sesuai pilihan user, pilihan States disesuaikan.
       switch (country) {
         case 'United States':
           items = ['New York', 'Oregon', 'Texas', 'New Jersey'];
@@ -157,21 +160,29 @@
           items = ['Pick country first'];
       }
 
-      let html = '';
+      // Persiapan memodifikasi elemen target
       const select = document.getElementById('state');
 
+      // Membersihkan seluruh child dari elemen target
       while (select.firstChild) {
         select.firstChild.remove()
       }
 
+      // Secara iteratif membuat elemen child baru untuk target
       for (let item of items) {
+        // Membuat elemen baru
         const opt = document.createElement('option');
+
+        // Modifikasi elemen baru
         opt.innerHTML = item;
         if (item === 'Pick country first') opt.value = '';
+
+        // Sisipkan elemen baru ke elemen target
         select.appendChild(opt);
       }
     }
 
+    // Deklarasi function untuk toggle checkbox.
     function toggleCheckbox() {
       const toggle = document.getElementById('toggle-special');
       const enableMultiply = document.getElementById('enable-multiply');
@@ -180,8 +191,11 @@
       if (!toggle.checked) enableMultiply.checked = false;
     }
 
+    // Setting event listener pada target elemen.
     document.getElementById('country').addEventListener('change', getStates);
     document.getElementById('toggle-special').addEventListener('change', toggleCheckbox);
+
+    // Trik untuk membatasi input tanggal hingga tanggal hari ini
     document.getElementById('dob').max = new Date().toISOString().split('T')[0];
   </script>
 </body>
