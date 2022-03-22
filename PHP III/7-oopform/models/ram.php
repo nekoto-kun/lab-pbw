@@ -5,10 +5,10 @@ class RAM extends Product
 {
   private $size;
 
-  public function __construct($name, $price, $image, $size)
+  public function __construct($name, $price, $image, $size = 'N/A')
   {
     parent::__construct($name, $price, $image);
-    $this->$size = $size;
+    $this->size = $size;
   }
 
   public function getSize()
@@ -18,6 +18,6 @@ class RAM extends Product
 
   public function setSize($size)
   {
-    $this->$size = $size;
+    $this->size = $size;
   }
 }

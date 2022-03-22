@@ -5,10 +5,10 @@ class Processor extends Product
 {
   private $cores;
 
-  public function __construct($name, $price, $image, $cores)
+  public function __construct($name, $price, $image, $cores = 1)
   {
     parent::__construct($name, $price, $image);
-    $this->$cores = $cores;
+    $this->cores = $cores;
   }
 
   public function getCores()
@@ -18,6 +18,6 @@ class Processor extends Product
 
   public function setCores($cores)
   {
-    $this->$cores = $cores;
+    $this->cores = $cores;
   }
 }

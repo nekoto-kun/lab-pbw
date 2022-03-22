@@ -5,10 +5,10 @@ class Storage extends Product
 {
   private $type;
 
-  public function __construct($name, $price, $image, $type)
+  public function __construct($name, $price, $image, $type = 'N/A')
   {
     parent::__construct($name, $price, $image);
-    $this->$type = $type;
+    $this->type = $type;
   }
 
   public function getType()
@@ -18,6 +18,6 @@ class Storage extends Product
 
   public function setType($type)
   {
-    $this->$type = $type;
+    $this->type = $type;
   }
 }

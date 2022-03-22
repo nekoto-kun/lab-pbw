@@ -41,6 +41,25 @@ require_once('models/product.php');
               <div class="card-body">
                 <h5 class="card-title"><?= $product->getName() ?></h5>
                 <h6 class="card-subtitle text-muted price"><?= $product->getPriceVAT() ?></h6>
+                <p>
+                  <?php if ($product instanceof Processor) : ?>
+                    <span class="badge bg-primary">
+                      <?= $product->getCores() ?> core(s)
+                    </span>
+                  <?php elseif ($product instanceof RAM) : ?>
+                    <span class="badge bg-success">
+                      <?= $product->getSize() ?>
+                    </span>
+                  <?php elseif ($product instanceof Storage) : ?>
+                    <span class="badge bg-danger">
+                      <?= $product->getType() ?>
+                    </span>
+                  <?php elseif ($product instanceof VGA) : ?>
+                    <span class="badge bg-warning">
+                      <?= $product->getSize() ?>
+                    </span>
+                  <?php endif ?>
+                </p>
               </div>
               <div class="card-footer">
                 <input type="text" value="0" name="<?= $product->getName() ?>" class="form-control" placeholder="Quantity">
