@@ -1,12 +1,12 @@
 <?php
 class Product
 {
-  private $name;
-  private $price;
-  private $image;
+  protected $name;
+  protected $price;
+  protected $image;
   private $orderCount = 0;
 
-  private static $count = 0;
+  protected static $count = 0;
 
   public function __construct($name, $price, $image)
   {
