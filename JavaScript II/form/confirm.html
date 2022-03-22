@@ -97,7 +97,7 @@
     crossorigin="anonymous"></script>
 
   <script>
-    // Trik untuk mendapaatkan value dari form
+    // Trik untuk mendapatkan value dari form
     const params = new Proxy(new URLSearchParams(window.location.search), {
       get: (searchParams, prop) => searchParams.get(prop),
     });
