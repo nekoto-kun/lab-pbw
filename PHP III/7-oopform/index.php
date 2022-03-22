@@ -39,7 +39,9 @@ require_once('models/product.php');
             <div class="card">
               <img src="<?= $product->getImage() ?>" class="card-img-top img-fluid">
               <div class="card-body">
-                <h5 class="card-title"><?= $product->getName() ?></h5>
+                <h5 class="card-title">
+                  <a href="show.php"><?= $product->getName() ?></a>
+                </h5>
                 <h6 class="card-subtitle text-muted price"><?= $product->getPriceVAT() ?></h6>
                 <p>
                   <?php if ($product instanceof Processor) : ?>
