@@ -1,12 +1,45 @@
 <?php
+require_once('connection.php');
 require_once('models/processor.php');
 require_once('models/ram.php');
 require_once('models/storage.php');
 require_once('models/vga.php');
 
-$cpu = new Processor('Intel', 9600000, 'https://c1.neweggimages.com/ProductImageCompressAll1280/19-118-341-06.jpg', 8);
-$ssd = new Storage('Samsung', 5200000, 'https://pemmz.com/pub/media/catalog/product/cache/bd3f5a515fc184d023496aa6e56fb6f6/_/_/__57_2.jpg', 'SSD');
-$ram = new RAM('Corsair', 6200000, 'https://media.ldlc.com/r374/ld/products/00/05/90/05/LD0005900503_1_0005912824_0005923045.jpg', '16 GB');
-$vga = new VGA('Nvidia', 20500000, 'https://cf.shopee.co.id/file/a36de0fd3091931e6f6488f31b35240a', '8 GB');
+// Setup SQL statement
+$sql = "SELECT * FROM products";
 
-$products = array($cpu, $ssd, $ram, $vga);
+try {
+  // Query the statement using connection PDO
+  $result = $conn->query($sql, PDO::FETCH_ASSOC);
+
+  // Array init
+  $products = [];
+
+  // Iterate over query result
+  while ($product = $result->fetch()) {
+
+    // Store each data in variables
+    $name = $product['name'];
+    $price = $product['price'];
+    $imageUrl = $product['image_url'];
+    $options = json_decode($product['options']); // Use json_decode() to decode JSON string into PHP object
+
+    // Create new objects based on their category value
+    switch ($options->category) {
+      case 'processor':
+        $products[] = new Processor($name, $price, $imageUrl, $options->cores);
+        break;
+      case 'storage':
+        $products[] = new Storage($name, $price, $imageUrl, $options->type);
+        break;
+      case 'memory':
+        $products[] = new RAM($name, $price, $imageUrl, $options->size);
+        break;
+      case 'vga':
+        $products[] = new VGA($name, $price, $imageUrl, $options->size);
+        break;
+    }
+  }
+} catch (PDOException $e) {
+  die('Error reading data: ' . $e->getMessage());
+}
