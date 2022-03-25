@@ -75,6 +75,6 @@ function addNewProduct($payload)
 
     $statement->execute([$payload['name'], $payload['price'], $payload['imageUrl'], json_encode($options)]);
   } catch (PDOException $e) {
-    die('Error reading data: ' . $e->getMessage());
+    die('Error creating data: ' . $e->getMessage());
   }
 }
