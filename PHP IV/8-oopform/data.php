@@ -48,3 +48,33 @@ function getAllProducts()
     die('Error reading data: ' . $e->getMessage());
   }
 }
+
+function addNewProduct($payload)
+{
+  try {
+    $conn = createConnection();
+    $sql = 'INSERT INTO products (name, price, image_url, options) VALUES (?, ?, ?, ?)';
+    $statement = $conn->prepare($sql);
+
+    $options = array(
+      'category' => $payload['category']
+    );
+
+    switch ($payload['category']) {
+      case 'processor':
+        $options['cores'] = $payload['cores'];
+        break;
+      case 'storage':
+        $options['type'] = $payload['storageType'];
+        break;
+      case 'memory':
+      case 'vga':
+        $options['size'] = $payload['size'];
+        break;
+    }
+
+    $statement->execute([$payload['name'], $payload['price'], $payload['imageUrl'], json_encode($options)]);
+  } catch (PDOException $e) {
+    die('Error reading data: ' . $e->getMessage());
+  }
+}

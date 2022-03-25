@@ -149,6 +149,55 @@ $products = getAllProducts();
       element.innerHTML = formatter.format(element.innerHTML);
     });
   </script>
+
+  <script>
+    function displaySpecificFields() {
+      let category = document.getElementById('productCategory').value;
+      let whereToPut = document.getElementById('specific');
+
+      switch (category) {
+        case 'processor':
+          whereToPut.innerHTML = `
+          <label for="coreNumber" class="form-label">Cores</label>
+          <label for="coreNumber" class="form-label float-end" id="selectedCores"></label>
+          <input type="range" class="form-range" aria-label="Cores" aria-describedby="coreNumber" min="1" max="32" name="cores" id="coreNumber" value="1" required>
+          `;
+          document.getElementById('coreNumber').addEventListener('mousemove', () => {
+            let value = document.getElementById('coreNumber').value;
+            document.getElementById('selectedCores').innerHTML = `${value} core${value > 1 ? 's' : ''}`;
+          });
+          break;
+        case 'storage':
+          whereToPut.innerHTML = `
+          <label for="storageType" class="form-label">Storage Type</label>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="storageType" id="storageTypeHDD" value="HDD" checked>
+            <label class="form-check-label" for="storageTypeHDD">
+              HDD
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="storageType" id="storageTypeSSD" value="SSD">
+            <label class="form-check-label" for="storageTypeSSD">
+              SSD
+            </label>
+          </div>
+          `;
+          break;
+        case 'vga':
+        case 'memory':
+          whereToPut.innerHTML = `
+          <label for="componentSize" class="form-label">Size</label>
+          <input type="text" class="form-control" id="componentSize" placeholder="Size" name="size" required>
+          `;
+          break;
+        default:
+          whereToPut.innerHTML = '';
+      }
+    }
+
+    document.getElementById('productCategory').addEventListener('change', displaySpecificFields);
+  </script>
 </body>
 
 </html>
