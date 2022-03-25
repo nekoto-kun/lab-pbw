@@ -1,6 +1,9 @@
 <?php
 require_once('data.php');
 require_once('models/product.php');
+
+$products = getAllProducts();
+
 ?>
 
 <!DOCTYPE html>
@@ -90,7 +93,7 @@ require_once('models/product.php');
           <h5 class="modal-title" id="addProductLabel">Add new product</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <form action="process.php" method="post" enctype="multipart/form-data">
+        <form action="controller.php" method="post" enctype="multipart/form-data">
           <div class="modal-body">
             <div class="form-floating mb-3">
               <input type="text" class="form-control" id="productName" placeholder="Product name" name="name" required>
@@ -110,9 +113,10 @@ require_once('models/product.php');
                 <input type="text" class="form-control" placeholder="URL" aria-label="URL" aria-describedby="productImageUrl" name="imageUrl" required>
               </div>
             </div>
+            <hr>
             <div class="mb-3">
               <label for="productCategory" class="form-label">Category</label>
-              <select class="form-select" aria-label="Category" id="productCategory" name="category">
+              <select class="form-select" aria-label="Category" id="productCategory" name="category" required>
                 <option value="" selected>Choose a category</option>
                 <option value="processor">Processor</option>
                 <option value="storage">Storage</option>
@@ -120,6 +124,7 @@ require_once('models/product.php');
                 <option value="vga">VGA</option>
               </select>
             </div>
+            <div class="mb-3" id="specific"></div>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
