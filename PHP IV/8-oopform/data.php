@@ -143,6 +143,6 @@ function updateProduct($payload)
 
     $statement->execute([$payload['name'], $payload['price'], $payload['imageUrl'], json_encode($options), $payload['id']]);
   } catch (PDOException $e) {
-    die('Error creating data: ' . $e->getMessage());
+    die('Error updating data: ' . $e->getMessage());
   }
 }
