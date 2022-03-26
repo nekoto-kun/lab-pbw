@@ -5,9 +5,9 @@ class VGA extends Product
 {
   private $size;
 
-  public function __construct($name, $price, $image, $size = 'N/A')
+  public function __construct($id, $name, $price, $image, $size = 'N/A')
   {
-    parent::__construct($name, $price, $image);
+    parent::__construct($id, $name, $price, $image);
     $this->size = $size;
   }
 

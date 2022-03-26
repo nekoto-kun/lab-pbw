@@ -5,9 +5,9 @@ class Storage extends Product
 {
   private $type;
 
-  public function __construct($name, $price, $image, $type = 'N/A')
+  public function __construct($id, $name, $price, $image, $type = 'N/A')
   {
-    parent::__construct($name, $price, $image);
+    parent::__construct($id, $name, $price, $image);
     $this->type = $type;
   }
 

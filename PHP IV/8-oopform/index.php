@@ -51,7 +51,7 @@ $products = getAllProducts();
               <img src="<?= $product->getImage() ?>" class="card-img-top img-fluid">
               <div class="card-body">
                 <h5 class="card-title">
-                  <a href="show.php?name=<?= $product->getName() ?>"><?= $product->getName() ?></a>
+                  <a href="show.php?id=<?= $product->getId() ?>"><?= $product->getName() ?></a>
                 </h5>
                 <h6 class="card-subtitle text-muted price"><?= $product->getPriceVAT() ?></h6>
                 <p>

@@ -5,9 +5,9 @@ class Processor extends Product
 {
   private $cores;
 
-  public function __construct($name, $price, $image, $cores = 1)
+  public function __construct($id, $name, $price, $image, $cores = 1)
   {
-    parent::__construct($name, $price, $image);
+    parent::__construct($id, $name, $price, $image);
     $this->cores = $cores;
   }
 

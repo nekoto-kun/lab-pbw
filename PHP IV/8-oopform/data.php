@@ -22,6 +22,7 @@ function getAllProducts()
     while ($product = $result->fetch()) {
 
       // Store each data in variables
+      $id = $product['id'];
       $name = $product['name'];
       $price = $product['price'];
       $imageUrl = $product['image_url'];
@@ -30,16 +31,16 @@ function getAllProducts()
       // Create new objects based on their category value
       switch ($options->category) {
         case 'processor':
-          $products[] = new Processor($name, $price, $imageUrl, $options->cores);
+          $products[] = new Processor($id, $name, $price, $imageUrl, $options->cores);
           break;
         case 'storage':
-          $products[] = new Storage($name, $price, $imageUrl, $options->type);
+          $products[] = new Storage($id, $name, $price, $imageUrl, $options->type);
           break;
         case 'memory':
-          $products[] = new RAM($name, $price, $imageUrl, $options->size);
+          $products[] = new RAM($id, $name, $price, $imageUrl, $options->size);
           break;
         case 'vga':
-          $products[] = new VGA($name, $price, $imageUrl, $options->size);
+          $products[] = new VGA($id, $name, $price, $imageUrl, $options->size);
           break;
       }
     }
@@ -76,5 +77,17 @@ function addNewProduct($payload)
     $statement->execute([$payload['name'], $payload['price'], $payload['imageUrl'], json_encode($options)]);
   } catch (PDOException $e) {
     die('Error creating data: ' . $e->getMessage());
+  }
+}
+
+function getSingleProduct($id)
+{
+  try {
+    $conn = createConnection();
+    $sql = "SELECT * FROM products WHERE id = $id";
+    $result = $conn->query($sql, PDO::FETCH_ASSOC);
+    return $result->fetch();
+  } catch (PDOException $e) {
+    die('Error reading data: ' . $e->getMessage());
   }
 }

@@ -1,6 +1,7 @@
 <?php
 class Product
 {
+  protected $id;
   protected $name;
   protected $price;
   protected $image;
@@ -8,8 +9,9 @@ class Product
 
   protected static $count = 0;
 
-  public function __construct($name, $price, $image)
+  public function __construct($id, $name, $price, $image)
   {
+    $this->id = $id;
     $this->name = $name;
     $this->price = $price;
     $this->image = $image;
@@ -19,6 +21,11 @@ class Product
   public function hello()
   {
     echo 'Nama produk: ' . $this->name;
+  }
+
+  public function getId()
+  {
+    return $this->id;
   }
 
   public function getName()
