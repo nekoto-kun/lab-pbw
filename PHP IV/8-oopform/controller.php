@@ -7,6 +7,9 @@ if (strtoupper($_SERVER['REQUEST_METHOD']) == 'POST') {
     if ($_POST['_method'] == 'PUT') {
       updateProduct($_POST);
     }
+    if ($_POST['_method'] == 'DELETE') {
+      deleteProduct($_POST['id']);
+    }
   } else {
     addNewProduct($_POST);
   }

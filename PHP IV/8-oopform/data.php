@@ -146,3 +146,14 @@ function updateProduct($payload)
     die('Error updating data: ' . $e->getMessage());
   }
 }
+
+function deleteProduct($id)
+{
+  try {
+    $conn = createConnection();
+    $sql = "DELETE FROM products WHERE id = $id";
+    $conn->query($sql);
+  } catch (PDOException $e) {
+    die('Error deleting data: ' . $e->getMessage());
+  }
+}

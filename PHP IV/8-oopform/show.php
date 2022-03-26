@@ -29,9 +29,14 @@ $product = getSingleProduct($_GET['id']);
         <h1><?= $product->getName() ?></h1>
       </div>
       <div class="justify-content-end align-self-center">
-        <div class="form-check form-switch">
+        <div class="form-check form-switch mb-2">
           <input class="form-check-input" type="checkbox" role="switch" id="switchEdit" onchange="toggleForm()">
           <label class="form-check-label" for="switchEdit">Edit product information</label>
+        </div>
+        <div class="d-grid">
+          <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#confirmDelete">
+            Delete
+          </button>
         </div>
       </div>
     </div>
@@ -102,6 +107,29 @@ $product = getSingleProduct($_GET['id']);
         <div class="mb-3" id="specific"></div>
         <button type="submit" class="btn btn-primary">Update</button>
       </form>
+    </div>
+  </div>
+
+  <!-- Delete Confirmation Modal -->
+  <div class="modal fade" id="confirmDelete" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="confirmDeleteLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="confirmDeleteLabel">Delete confirmation</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Are you sure you want to delete this product?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <form action="controller.php" method="post">
+            <input type="hidden" name="_method" value="DELETE">
+            <input type="hidden" name="id" value="<?= $product->getId() ?>">
+            <button type="submit" class="btn btn-danger">Delete</button>
+          </form>
+        </div>
+      </div>
     </div>
   </div>
 
